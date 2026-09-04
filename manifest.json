@@ -1,25 +1,32 @@
 {
     "manifest_version": 3,
-    "name": "Relay — Claude Usage Watcher",
+    "name": "Relay — AI Usage Watcher",
     "version": "0.1.0",
-    "description": "Warns you before you hit Claude.ai's chat usage limit. Reads the page live, saves nothing.",
+    "description": "Warns you before you hit usage limits on Claude, ChatGPT, Gemini, and other AI chatbots. Reads the page live, saves nothing.",
     "permissions": [],
     "host_permissions": [
-        "https://claude.ai/*"
+        "https://claude.ai/*",
+        "https://chatgpt.com/*",
+        "https://gemini.google.com/*"
     ],
     "content_scripts": [
         {
             "matches": [
-                "https://claude.ai/*"
+                "https://claude.ai/*",
+                "https://chatgpt.com/*",
+                "https://gemini.google.com/*"
             ],
             "js": [
+                "adapters/claude.js",
+                "adapters/chatgpt.js",
+                "adapters/gemini.js",
                 "content_script.js"
             ],
             "run_at": "document_idle"
         }
     ],
     "action": {
-        "default_title": "Relay — Claude Usage Watcher"
+        "default_title": "Relay — AI Usage Watcher"
     },
     "icons": {
         "48": "icons/icon48.png",

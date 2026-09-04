@@ -1,31 +1,18 @@
 const CHECK_INTERVAL_MS = 3000;
 
-function findWarningText() {
-    const bodyText = document.body.innerText;
-
-    const patterns = [
-        /you have \d+ messages? left/i,
-        /you'?ll have more messages/i,
-        /resets? at/i,
-        /approaching your usage limit/i,
-        /usage limit/i,
-    ];
-
-    for (const pattern of patterns) {
-        const match = bodyText.match(pattern);
-        if (match) {
-            return match[0];
+function getActiveAdapter() {
+    const adapters = window.RelayAdapters || {};
+    for (const key in adapters) {
+        if (adapters[key].matches()) {
+            return adapters[key];
         }
     }
-
     return null;
 }
 
 function notifyUser(warningText) {
     const existing = document.getElementById("relay-usage-banner");
-    if (existing) {
-        existing.remove();
-    }
+    if (existing) existing.remove();
 
     const banner = document.createElement("div");
     banner.id = "relay-usage-banner";
@@ -45,12 +32,14 @@ function notifyUser(warningText) {
   `;
 
     document.body.appendChild(banner);
-
     setTimeout(() => banner.remove(), 8000);
 }
 
 function checkForWarning() {
-    const warningText = findWarningText();
+    const adapter = getActiveAdapter();
+    if (!adapter) return;
+
+    const warningText = adapter.findWarning();
     if (warningText) {
         notifyUser(warningText);
     }
