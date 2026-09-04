@@ -1,0 +1,28 @@
+{
+    "manifest_version": 3,
+    "name": "Relay — Claude Usage Watcher",
+    "version": "0.1.0",
+    "description": "Warns you before you hit Claude.ai's chat usage limit. Reads the page live, saves nothing.",
+    "permissions": [],
+    "host_permissions": [
+        "https://claude.ai/*"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://claude.ai/*"
+            ],
+            "js": [
+                "content_script.js"
+            ],
+            "run_at": "document_idle"
+        }
+    ],
+    "action": {
+        "default_title": "Relay — Claude Usage Watcher"
+    },
+    "icons": {
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    }
+}
