@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Relay — AI Usage Watcher",
+    "name": "Relay - AI Usage Watcher",
     "version": "0.1.0",
     "description": "Warns you before you hit usage limits on Claude, ChatGPT, Gemini, and other AI chatbots. Reads the page live, saves nothing.",
     "permissions": [],
@@ -26,7 +26,7 @@
         }
     ],
     "action": {
-        "default_title": "Relay — AI Usage Watcher"
+        "default_title": "Relay - AI Usage Watcher"
     },
     "icons": {
         "48": "icons/icon48.png",
