@@ -7,7 +7,8 @@ window.RelayAdapters.gemini = {
         const bodyText = document.body.innerText;
         const patterns = [
             /you'?ve reached your limit/i,
-            /try again later/i,
+            /limit resets? (in|at) .+/i,
+            /you'?re approaching your (usage )?limit/i,
             /daily limit/i,
         ];
         for (const pattern of patterns) {

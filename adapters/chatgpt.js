@@ -8,8 +8,8 @@ window.RelayAdapters.chatgpt = {
         const patterns = [
             /you'?ve reached the .* limit/i,
             /try again after/i,
-            /you can continue with/i,
             /usage cap/i,
+            /switched to a (faster|lighter|different) model/i,
         ];
         for (const pattern of patterns) {
             const match = bodyText.match(pattern);
